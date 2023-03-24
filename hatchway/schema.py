@@ -2,7 +2,7 @@ from typing import Any
 
 from django.db.models import Manager, QuerySet
 from django.db.models.fields.files import FieldFile
-from django.template import Variable, VariableDoesNotExist
+from django.template import Variable, VariableDoesNotExist  # noqa
 from pydantic.fields import Field  # noqa
 from pydantic.main import BaseModel
 from pydantic.utils import GetterDict
@@ -39,10 +39,7 @@ class DjangoGetterDict(GetterDict):
             return result()
 
         elif isinstance(result, FieldFile):
-            if not result:
-                return None
-            return result.url
-
+            return result.url if result else None
         return result
 
 

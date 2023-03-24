@@ -2,8 +2,8 @@ from typing import Literal, Optional, Union
 
 from django.core.files import File
 
-from hatchway.http import ApiResponse
-from hatchway.types import (
+from hatchway.hatchway_http import ApiResponse
+from hatchway.hatchway_types import (
     BaseModel,
     Query,
     QueryType,

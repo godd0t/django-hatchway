@@ -8,8 +8,8 @@ from django.http.multipartparser import MultiPartParser
 from pydantic import BaseModel, ValidationError, create_model
 
 from .constants import InputSource
-from .http import ApiError, ApiResponse
-from .types import (
+from .hatchway_http import ApiError, ApiResponse
+from .hatchway_types import (
     BodyDirectType,
     BodyType,
     FileType,
@@ -44,6 +44,7 @@ class ApiView:
         implicit_lists: bool = True,
         method: str | None = None,
     ):
+        self.output_model = None
         self.view = view
         self.implicit_lists = implicit_lists
         self.view_name = getattr(view, "__name__", "unknown_view")
@@ -95,36 +96,36 @@ class ApiView:
         origin_type = get_origin(input_type)
         collection_types = {list, set, tuple, frozenset}
         if signifier is QueryType:
-            return ([InputSource.query], input_type)
+            return [InputSource.query], input_type
         elif signifier is BodyType:
-            return ([InputSource.body], input_type)
+            return [InputSource.body], input_type
         elif signifier is BodyDirectType:
             if not issubclass(input_type, BaseModel):
                 raise ValueError(
                     "You cannot use BodyDirect on something that is not a Pydantic model"
                 )
-            return ([InputSource.body_direct], input_type)
+            return [InputSource.body_direct], input_type
         elif signifier is PathType:
-            return ([InputSource.path], input_type)
+            return [InputSource.path], input_type
         elif (
             signifier is FileType
             or input_type is files.File
             or is_optional(input_type)[1] is files.File
         ):
-            return ([InputSource.file], input_type)
+            return [InputSource.file], input_type
         elif signifier is QueryOrBodyType:
-            return ([InputSource.query, InputSource.body], input_type)
+            return [InputSource.query, InputSource.body], input_type
         elif signifier is PathOrQueryType:
-            return ([InputSource.path, InputSource.query], input_type)
+            return [InputSource.path, InputSource.query], input_type
         # Is it a Pydantic model, which means it's implicitly body?
         elif is_model_subclass(input_type):
-            return ([InputSource.body], input_type)
+            return [InputSource.body], input_type
         # Collections only come from the query, with implicit list conversion
         elif input_type in collection_types or origin_type in collection_types:
-            return ([InputSource.query_list], input_type)
+            return [InputSource.query_list], input_type
         # Otherwise, we look in the path first and then the query
         else:
-            return ([InputSource.path, InputSource.query], input_type)
+            return [InputSource.path, InputSource.query], input_type
 
     @classmethod
     def get_values(cls, data, use_square_brackets=True) -> dict[str, Any]:
@@ -146,12 +147,11 @@ class ApiView:
                 target = result
                 last_key = parts[0]
                 for part in parts[1:]:
-                    part = part.rstrip("]")
-                    if not part:
-                        target = target.setdefault(last_key, [])
-                    else:
+                    if part := part.rstrip("]"):
                         target = target.setdefault(last_key, {})
                         last_key = part
+                    else:
+                        target = target.setdefault(last_key, [])
                 if isinstance(target, list):
                     if isinstance(value, list):
                         target.extend(value)
@@ -208,10 +208,10 @@ class ApiView:
             self.input_model = create_model(
                 f"{self.view_name}_input", **pydantic_model_dict
             )
-        except RuntimeError:
+        except RuntimeError as e:
             raise ValueError(
                 f"One or more inputs on view {self.view_name} have a bad configuration"
-            )
+            ) from e
         if self.output_type is not None:
             self.output_model = create_model(
                 f"{self.view_name}_output", value=(self.output_type, ...)
@@ -221,6 +221,7 @@ class ApiView:
         """
         Entrypoint when this is called as a view.
         """
+        # TODO: Refactor
         # Do a method check if we have one set
         if self.method and self.method.upper() != request.method:
             return HttpResponseNotAllowed([self.method])
