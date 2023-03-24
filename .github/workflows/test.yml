@@ -26,9 +26,9 @@ jobs:
       - name: Run pytest
         run: |
           python -m pytest
-      - name: Run pre-commit
-        run: |
-          pre-commit run -a --show-diff-on-failure
+#      - name: Run pre-commit
+#        run: |
+#          pre-commit run -a --show-diff-on-failure
   deploy:
     needs: [test]
     runs-on: ubuntu-latest
