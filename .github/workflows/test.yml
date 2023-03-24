@@ -3,7 +3,8 @@ name: Test
 on:
   push:
   pull_request:
-
+permissions:
+  contents: write
 jobs:
   test:
     name: test py${{ matrix.python-version }} with ${{ matrix.db_name }}
