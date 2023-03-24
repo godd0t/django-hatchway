@@ -15,7 +15,7 @@ from typing import (  # type: ignore[attr-defined]
 from django.core import files
 from pydantic import BaseModel
 
-from .http import ApiResponse
+from .hatchway_http import ApiResponse
 
 T = TypeVar("T")
 
