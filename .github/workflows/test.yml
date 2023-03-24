@@ -2,6 +2,8 @@ name: Test
 
 on:
   push:
+    branches:
+      - main
   pull_request:
 permissions:
   contents: write
@@ -43,8 +45,8 @@ jobs:
       - uses: actions/cache@v3
         id: pip-cache
         with:
-          key: ${{ env.pythonLocation }}
-          path: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}
+          key: ${{ github.ref }}
+          path: .cache
       - name: Install dependencies
         run: pip install -e .[doc]
       - name: Build docs
