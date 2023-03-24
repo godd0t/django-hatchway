@@ -31,7 +31,6 @@ jobs:
           pre-commit run -a --show-diff-on-failure
   deploy:
     needs: [test]
-    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -46,5 +45,6 @@ jobs:
           key: ${{ env.pythonLocation }}
           path: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}
       - name: Install dependencies
-      - run: pip install -e .[doc]
-      - run: mkdocs gh-deploy --force
+        run: pip install -e .[doc]
+      - name: Build docs
+        run: mkdocs gh-deploy --force
