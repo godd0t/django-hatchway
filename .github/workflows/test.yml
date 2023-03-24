@@ -29,9 +29,9 @@ jobs:
       - name: Run pre-commit
         run: |
           pre-commit run -a --show-diff-on-failure
-
   deploy:
-    needs: build
+    needs: [test]
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -46,5 +46,5 @@ jobs:
           key: ${{ env.pythonLocation }}
           path: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}
       - name: Install dependencies
-      - run: pip install mkdocs-material mdx_include mkdocs-markdownextradata-plugin pymdown-extensions
+      - run: pip install -e .[doc]
       - run: mkdocs gh-deploy --force
