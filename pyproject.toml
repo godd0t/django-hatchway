@@ -22,9 +22,23 @@ version = {attr = "hatchway.__version__"}
 
 [project.optional-dependencies]
 dev = [
-    "pytest~=7.2",
-    "pytest-django~=4.5"
+    "ruff >= 0.0.236",
+    "isort >= 5.11.4",
+    "ruff >= 0.0.236",
 ]
+doc = [
+    "mkdocs-material == 9.0.6",
+    "mdx_include == 1.4.2",
+    "mkdocs-markdownextradata-plugin == 0.2.5",
+    "termynal == 0.2.1",
+]
+test = [
+    "pytest == 7.2.1",
+    "pytest-django == 4.5.2",
+    "pytest-cov == 4.0.0",
+]
+
+# TESTING
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
@@ -34,3 +48,26 @@ testpaths = [
 
 DJANGO_SETTINGS_MODULE="tests.test_project.settings"
 django_find_project = false
+
+
+# LINTING
+[tool.black]
+line-length = 89
+target-version = ['py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+  | migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+skip = "migrations"
+
+[tool.ruff]
+line-length = 89

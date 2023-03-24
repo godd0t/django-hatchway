@@ -29,3 +29,22 @@ jobs:
       - name: Run pre-commit
         run: |
           pre-commit run -a --show-diff-on-failure
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: 'pip'
+          cache-dependency-path: pyproject.toml
+      - uses: actions/cache@v3
+        id: pip-cache
+        with:
+          key: ${{ env.pythonLocation }}
+          path: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}
+      - name: Install dependencies
+      - run: pip install mkdocs-material mdx_include mkdocs-markdownextradata-plugin pymdown-extensions
+      - run: mkdocs gh-deploy --force

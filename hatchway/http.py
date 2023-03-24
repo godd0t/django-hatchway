@@ -19,7 +19,7 @@ class ApiResponse(Generic[T], HttpResponse):
         encoder=DjangoJSONEncoder,
         json_dumps_params: dict[str, object] | None = None,
         finalize: bool = False,
-        **kwargs
+        **kwargs,
     ):
         self.data = data
         self.encoder = encoder
