@@ -1,0 +1,700 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An unsurprising Django API framework">
+      
+      
+      
+      
+      
+        <link rel="next" href="tutorials/user_guide/">
+      
+      <link rel="icon" href="img/logo.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Django Hatchway</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="css/termynal.css">
+    
+      <link rel="stylesheet" href="css/custom.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#django-hatchway" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Django Hatchway" class="md-header__button md-logo" aria-label="Django Hatchway" data-md-component="logo">
+      
+  <img src="img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Django Hatchway
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Django Hatchway
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/andrewgodwin/django-hatchway" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    andrewgodwin/django-hatchway
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Django Hatchway" class="md-nav__button md-logo" aria-label="Django Hatchway" data-md-component="logo">
+      
+  <img src="img/logo.png" alt="logo">
+
+    </a>
+    Django Hatchway
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/andrewgodwin/django-hatchway" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    andrewgodwin/django-hatchway
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Django Hatchway
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Django Hatchway
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-it" class="md-nav__link">
+    What is it?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url-patterns" class="md-nav__link">
+    URL patterns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#argument-sourcing" class="md-nav__link">
+    Argument Sourcing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-sourcing" class="md-nav__link">
+    Model Sourcing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#return-values" class="md-nav__link">
+    Return Values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-headersstatus-codes-to-the-response" class="md-nav__link">
+    Adding Headers/Status Codes to the Response
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-collections" class="md-nav__link">
+    Auto-Collections
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tutorials/user_guide/" class="md-nav__link">
+        Tutorial - User Guide
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-it" class="md-nav__link">
+    What is it?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url-patterns" class="md-nav__link">
+    URL patterns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#argument-sourcing" class="md-nav__link">
+    Argument Sourcing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-sourcing" class="md-nav__link">
+    Model Sourcing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#return-values" class="md-nav__link">
+    Return Values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-headersstatus-codes-to-the-response" class="md-nav__link">
+    Adding Headers/Status Codes to the Response
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-collections" class="md-nav__link">
+    Auto-Collections
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="django-hatchway">Django Hatchway<a class="headerlink" href="#django-hatchway" title="Permanent link">&para;</a></h1>
+<p><a href="https://pypi.org/project/django-hatchway/"><img alt="pypi-version" src="https://badge.fury.io/py/django-hatchway.svg" /></a>
+<a href="https://github.com/andrewgodwin/django-hatchway/actions/workflows/test.yml"><img alt="build-status-image" src="https://github.com/andrewgodwin/django-hatchway/actions/workflows/test.yml/badge.svg" /></a>
+<a href="https://github.com/andrewgodwin/django-hatchway"><img alt="package-status" src="https://img.shields.io/badge/work%20in%20progress-yellow" /></a></p>
+<hr />
+<h2 id="what-is-it">What is it?<a class="headerlink" href="#what-is-it" title="Permanent link">&para;</a></h2>
+<p>Hatchway is an API framework inspired by the likes of <a href="https://fastapi.tiangolo.com/">FastAPI</a>, 
+but while trying to keep API views as much like standard <a href="https://www.djangoproject.com/">Django</a> views as possible.</p>
+<p>It was built for, and extracted from, <a href="https://github.com/jointakahe/takahe">Takahē</a>.
+If you want to see an example of it being used, browse its <a href="https://github.com/jointakahe/takahe/tree/main/api">api app</a>.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<div class="termy">
+
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>django-hatchway
+
+<span class="go">---&gt; 100%</span>
+</code></pre></div>
+
+</div>
+
+<p>Add <code>hatchway</code> to your <code>INSTALLED_APPS</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;hatchway&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>To make a view an API endpoint, you should write a standard function-based view, and decorate it with
+<code>@api_view</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;myapp/api.py&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">hatchway</span> <span class="kn">import</span> <span class="n">api_view</span>
+
+<span class="nd">@api_view</span><span class="o">.</span><span class="n">get</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;hello&quot;</span><span class="p">:</span> <span class="s2">&quot;world&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>The types of your function arguments matter. Hatchway will use them to work out where to get their values from and how to parse them.
+All the standard Python types are supported, plus <a href="https://docs.pydantic.dev/">Pydantic-style models</a> 
+(which ideally you should build based on the hatchway.Schema base class, as it understands how to load things from Django model instances).</p>
+<p>Your return type also matters - this is what Hatchway uses to work out how to format/validate the return value. 
+You can leave it off, or set it to Any, if you don't want any return validation.</p>
+<h2 id="url-patterns">URL patterns<a class="headerlink" href="#url-patterns" title="Permanent link">&para;</a></h2>
+<p>You add API views in your 'urls.py' file as you would any other view:</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;myapp/urls.py&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">myapp.api</span> <span class="kn">import</span> <span class="n">my_api_endpoint</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;api/test/&quot;</span><span class="p">,</span> <span class="n">my_api_endpoint</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>The view will only accept the method it was decorated with (e.g. GET for <code>@api_view.get</code>)</p>
+<p>If you want to have two or more views on the same URL but responding to different methods, use Hatchway's <code>methods</code> object:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">hatchway</span> <span class="kn">import</span> <span class="n">methods</span>
+<span class="kn">from</span> <span class="nn">myapp.api</span> <span class="kn">import</span> <span class="n">posts</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span>
+        <span class="s2">&quot;api/post/&lt;id&gt;/&quot;</span><span class="p">,</span>
+        <span class="n">methods</span><span class="p">(</span>
+            <span class="n">get</span><span class="o">=</span><span class="n">posts</span><span class="o">.</span><span class="n">post_get</span><span class="p">,</span>
+            <span class="n">delete</span><span class="o">=</span><span class="n">posts</span><span class="o">.</span><span class="n">posts_delete</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>
+<h2 id="argument-sourcing">Argument Sourcing<a class="headerlink" href="#argument-sourcing" title="Permanent link">&para;</a></h2>
+<p>There are four places that input arguments can be sourced from:</p>
+<ul>
+<li>Path: The URL of the view, as provided via kwargs from the URL resolver</li>
+<li>Query: Query parameters (request.GET)</li>
+<li>Body: The body of a request, in either JSON, formdata, or multipart format</li>
+<li>File: Uploaded files, as part of a multipart body</li>
+</ul>
+<p>By default, Hatchway will pull arguments from these sources:</p>
+<ul>
+<li>Standard Python singular types (int, str, float, etc.): Path first, and then Query</li>
+<li>Python collection types (list[int], etc.): Query only, with implicit list conversion of either one or multiple values</li>
+<li>hatchway.Schema/Pydantic BaseModel subclasses: Body only (see Model Sourcing below)</li>
+<li>django.core.files.File: File only</li>
+</ul>
+<p>You can override where Hatchway pulls an argument from by using one of the 
+<code>Path</code>, <code>Query</code>, <code>Body</code>, <code>File</code>, <code>QueryOrBody</code>, <code>PathOrQuery</code>, or <code>BodyDirect</code> annotations:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">hatchway</span> <span class="kn">import</span> <span class="n">api_view</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">QueryOrBody</span>
+
+<span class="nd">@api_view</span><span class="o">.</span><span class="n">post</span>
+<span class="k">def</span> <span class="nf">my_api_endpoint</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">Path</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">limit</span><span class="p">:</span> <span class="n">QueryOrBody</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="o">...</span>
+</code></pre></div>
+<p>While <code>Path</code>, <code>Query</code>, <code>Body</code> and <code>File</code> force the argument to be picked from only that source,
+there are some more complex ones in there:</p>
+<ul>
+<li><code>PathOrQuery</code> first tries the Path, then tries the Query (the default for simple types)</li>
+<li><code>QueryOrBody</code> first tries the Query, then tries the Body</li>
+<li><code>BodyDirect</code> forces top-level population of a model - see Model Sourcing, below.</li>
+</ul>
+<h2 id="model-sourcing">Model Sourcing<a class="headerlink" href="#model-sourcing" title="Permanent link">&para;</a></h2>
+<p>When you define a <code>hatchway.Schema</code> subclass (or any other pydantic model subclass), Hatchway will presume that it should pull it from the POST/PUT/etc. body.</p>
+<p>How it pulls it depends on how many body-sourced arguments you have:</p>
+<ul>
+<li>If you just have one, it will feed it the top-level keys in the body data as its internal values.</li>
+<li>If you have more than one, it will look for its data in a sub-key named the same as the argument name.</li>
+</ul>
+<p>For example, this function has two body-sourced things (one implicit, one explicit):</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;myapp/api.py&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">hatchway</span> <span class="kn">import</span> <span class="n">api_view</span><span class="p">,</span> <span class="n">Body</span>
+<span class="kn">from</span> <span class="nn">myapp</span> <span class="kn">import</span> <span class="n">schemas</span>
+
+<span class="nd">@api_view</span><span class="o">.</span><span class="n">post</span>
+<span class="k">def</span> <span class="nf">my_api_endpoint</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">thing</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">MyInputSchema</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="n">Body</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
+<p>This means Hatchway will feed the <code>schemas.MyInputSchema</code> model whatever it finds under the <code>thing</code> key in the request body as its input,
+and <code>limit</code> will come from the <code>limit</code> key.</p>
+<p>If <code>limit</code> wasn't specified, then there would be only one body-sourced item, and Hatchway would feed <code>schemas.MyInputSchema</code> the entire request body as its input.</p>
+<p>You can force a schema subclass to be fed the entire request body by using the <code>BodyDirect[MySchemaClass]</code> annotation on its type.</p>
+<h2 id="return-values">Return Values<a class="headerlink" href="#return-values" title="Permanent link">&para;</a></h2>
+<p>The return value of an API view, if provided, is used to validate and coerce the type of the response:</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;myapp/api.py&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">hatchway</span> <span class="kn">import</span> <span class="n">api_view</span>
+
+<span class="nd">@api_view</span><span class="o">.</span><span class="n">delete</span>
+<span class="k">def</span> <span class="nf">my_api_endpoint</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="o">...</span>
+</code></pre></div>
+<p>It can be either a normal Python type, or a <code>hatchway.Schema</code> subclass. If it is a Schema subclass,
+the response will be fed to it for coercion, 
+and ORM objects are supported - returning a model instance,
+a dict with the model instance values,
+or an instance of the schema are all equivalent.</p>
+<p>A typechecker will honour these too, 
+so we generally recommend returning instances of your Schema so that your entire view benefits from typechecking,
+rather than relying on the coercion. You'll get typechecking in your Schema subclass constructors,
+and then typechecking that you're always returning the right things from the view.</p>
+<p>You can also use generics like <code>list[MySchemaClass]</code> or <code>dict[str, MySchemaClass]</code> as a response type; 
+generally, anything Pydantic allows, we do as well.</p>
+<h2 id="adding-headersstatus-codes-to-the-response">Adding Headers/Status Codes to the Response<a class="headerlink" href="#adding-headersstatus-codes-to-the-response" title="Permanent link">&para;</a></h2>
+<p>If you want to do more to your response than just sling some data back at your client,
+you can return an <code>ApiResponse</code> object instead of a plain value:</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;myapp/api.py&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">hatchway</span> <span class="kn">import</span> <span class="n">api_view</span><span class="p">,</span> <span class="n">ApiResponse</span>
+
+<span class="nd">@api_view</span><span class="o">.</span><span class="n">delete</span>
+<span class="k">def</span> <span class="nf">my_api_endpoint</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiResponse</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">ApiResponse</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;X-Safe-Delete&quot;</span><span class="p">:</span> <span class="s2">&quot;no&quot;</span><span class="p">})</span>
+</code></pre></div>
+<p><code>ApiResponse</code> is a standard Django <code>HTTPResponse</code> subclass, 
+so accepts almost all of the same arguments, 
+and has most of the same methods. Just don't edit its <code>.content</code> value; if you want to mutate the data you passed into it, that is stored in <code>.data</code>.</p>
+<p>Note that we also changed the return type of the view so that it would pass typechecking; <code>ApiResponse</code> accepts any response type as its argument and passes it through to the same validation layer.</p>
+<h2 id="auto-collections">Auto-Collections<a class="headerlink" href="#auto-collections" title="Permanent link">&para;</a></h2>
+<p>Hatchway allows you to say that Schema subclasses can pull their values from individual query parameters or body values; these are normally flat strings, though, unless you're looking at a JSON-encoded body, or multiple repeated query parameters.</p>
+<p>However, it will respect the use of <code>name[]</code> to make lists, and <code>name[key]</code> to make dicts. Some examples:</p>
+<ul>
+<li>A <code>a=Query[list[int]]</code> argument will see <code>url?a=1</code> as <code>[1]</code>, <code>url?a=1&amp;a=2</code> as <code>[1, 2]</code>, and <code>url?a[]=1&amp;a[]=2</code> as <code>[1, 2]</code>.</li>
+<li>A <code>b=Body[dict[str, int]]</code> argument will correctly accept the POST data <code>b[age]=30&amp;b[height]=180</code> and give you <code>{"age": 30, "height": 180}</code>.</li>
+</ul>
+<p>These will also work in JSON bodies too, though of course you don't need them there; nevertheless, they still work for compatibility reasons.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="tutorials/user_guide/" class="md-footer__link md-footer__link--next" aria-label="Next: Tutorial - User Guide" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                Tutorial - User Guide
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.footer", "search.suggest", "search.highlight", "content.tabs.link"], "search": "assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="js/termynal.js"></script>
+      
+        <script src="js/custom.js"></script>
+      
+    
+  </body>
+</html>
